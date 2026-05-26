@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Export Sales Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg:       #0e0f11;
+    --surface:  #16181c;
+    --surface2: #1e2126;
+    --border:   rgba(255,255,255,0.07);
+    --border2:  rgba(255,255,255,0.13);
+    --text:     #e8e9eb;
+    --muted:    #6b7280;
+    --accent:   #4f8ef7;
+    --accent2:  #f7934f;
+    --green:    #3ecf8e;
+    --red:      #f75858;
+    --font:     'DM Sans', sans-serif;
+    --mono:     'DM Mono', monospace;
+    --radius:   10px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 28px;
+    border-bottom: 0.5px solid var(--border2);
+    background: var(--surface);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+  .logo span { color: var(--accent); }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  #status-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--muted);
+    transition: background 0.4s;
+  }
+  #status-dot.live { background: var(--green); box-shadow: 0 0 6px var(--green); }
+  #last-update {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--muted);
+  }
+  #refresh-btn {
+    font-family: var(--font);
+    font-size: 12px;
+    background: var(--surface2);
+    color: var(--muted);
+    border: 0.5px solid var(--border2);
+    border-radius: 6px;
+    padding: 5px 12px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  #refresh-btn:hover { color: var(--text); border-color: var(--accent); }
+
+  /* ── Layout ── */
+  main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px 28px 48px;
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 12px;
+    padding-left: 2px;
+  }
+
+  /* ── KPI grid ── */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .kpi-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    transition: border-color 0.2s;
+  }
+  .kpi-card:hover { border-color: var(--border2); }
+  .kpi-label {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+  .kpi-value {
+    font-family: var(--mono);
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: -0.02em;
+  }
+  .kpi-sub {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .kpi-sub.up   { color: var(--green); }
+  .kpi-sub.down { color: var(--red); }
+
+  /* ── Chart sections ── */
+  .charts-row {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  .charts-row.col2 { grid-template-columns: 1fr 1fr; }
+  .charts-row.col3 { grid-template-columns: 2fr 1fr 1fr; }
+
+  .chart-card {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+  }
+  .chart-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+  .chart-wrap { position: relative; width: 100%; }
+
+  /* ── Legend ── */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    font-size: 11px;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+  .legend span { display: flex; align-items: center; gap: 5px; }
+  .legend-sq {
+    width: 9px; height: 9px;
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  /* ── Error / loading ── */
+  #error-banner {
+    display: none;
+    background: rgba(247,88,88,0.1);
+    border: 0.5px solid rgba(247,88,88,0.3);
+    border-radius: var(--radius);
+    color: var(--red);
+    padding: 12px 16px;
+    font-size: 13px;
+    margin-bottom: 16px;
+  }
+  .loading-overlay {
+    position: fixed; inset: 0;
+    background: var(--bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    z-index: 999;
+    transition: opacity 0.4s;
+  }
+  .loading-overlay.hidden { opacity: 0; pointer-events: none; }
+  .spinner {
+    width: 32px; height: 32px;
+    border: 2px solid var(--border2);
+    border-top-color: var(--accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text { font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<div class="loading-overlay" id="loading">
+  <div class="spinner"></div>
+  <p class="loading-text">Đang tải dữ liệu...</p>
+</div>
+
+<header>
+  <div class="logo">EXPORT <span>SALES</span> DASHBOARD</div>
+  <div class="header-right">
+    <div id="status-dot"></div>
+    <span id="last-update">—</span>
+    <button id="refresh-btn" onclick="loadData()">↻ Refresh</button>
+  </div>
+</header>
+
+<main>
+  <div id="error-banner"></div>
+
+  <!-- KPI row -->
+  <div class="section-label">Tổng quan</div>
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">Doanh thu 2025</div>
+      <div class="kpi-value" id="kpi-rev25">—</div>
+      <div class="kpi-sub">Cả năm (USD)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Doanh thu 2026</div>
+      <div class="kpi-value" id="kpi-rev26">—</div>
+      <div class="kpi-sub" id="kpi-rev26-sub">—</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">So sánh cùng kỳ</div>
+      <div class="kpi-value" id="kpi-yoy">—</div>
+      <div class="kpi-sub" id="kpi-yoy-sub">vs Jan–Apr 2025</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Tổng giao dịch</div>
+      <div class="kpi-value" id="kpi-records">—</div>
+      <div class="kpi-sub">Records trong file</div>
+    </div>
+  </div>
+
+  <!-- Main chart -->
+  <div class="section-label">Doanh thu theo tháng</div>
+  <div class="charts-row" style="grid-template-columns:1fr; margin-bottom:14px;">
+    <div class="chart-card">
+      <div class="chart-title">Doanh thu hàng tháng — USD (2022 → 2026)</div>
+      <div class="legend">
+        <span><span class="legend-sq" style="background:#4b5563"></span>2022</span>
+        <span><span class="legend-sq" style="background:#6b7280"></span>2023</span>
+        <span><span class="legend-sq" style="background:#4f8ef7"></span>2025</span>
+        <span><span class="legend-sq" style="background:#f7934f"></span>2026</span>
+      </div>
+      <div class="chart-wrap" style="height:260px"><canvas id="c-monthly" role="img" aria-label="Biểu đồ doanh thu theo tháng"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Products + Customer -->
+  <div class="section-label">Sản phẩm & Khách hàng</div>
+  <div class="charts-row col2">
+    <div class="chart-card">
+      <div class="chart-title">Top 10 sản phẩm — 2025</div>
+      <div class="chart-wrap" style="height:300px"><canvas id="c-prod25" role="img" aria-label="Top sản phẩm 2025"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Top 10 sản phẩm — 2026</div>
+      <div class="chart-wrap" style="height:300px"><canvas id="c-prod26" role="img" aria-label="Top sản phẩm 2026"></canvas></div>
+    </div>
+  </div>
+
+  <div class="charts-row col3">
+    <div class="chart-card">
+      <div class="chart-title">Doanh thu lũy kế 2025 (USD)</div>
+      <div class="chart-wrap" style="height:220px"><canvas id="c-cumul" role="img" aria-label="Lũy kế 2025"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Khách hàng 2025</div>
+      <div class="chart-wrap" style="height:220px"><canvas id="c-cust" role="img" aria-label="Khách hàng 2025"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Định biên sản phẩm 2025</div>
+      <div class="chart-wrap" style="height:220px"><canvas id="c-cat" role="img" aria-label="Định biên 2025"></canvas></div>
+    </div>
+  </div>
+
+  <!-- Type breakdown -->
+  <div class="section-label">So sánh cùng kỳ Jan–Apr</div>
+  <div class="charts-row col2">
+    <div class="chart-card">
+      <div class="chart-title">Thành phẩm vs Hàng hóa — 2025 theo tháng (USD)</div>
+      <div class="legend">
+        <span><span class="legend-sq" style="background:#4f8ef7"></span>Thành phẩm (製品/TP)</span>
+        <span><span class="legend-sq" style="background:#f7934f"></span>Hàng hóa (商品/HH)</span>
+      </div>
+      <div class="chart-wrap" style="height:220px"><canvas id="c-type" role="img" aria-label="Thành phẩm vs hàng hóa"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-title">Jan–Apr: 2025 vs 2026 (USD)</div>
+      <div class="legend">
+        <span><span class="legend-sq" style="background:#4f8ef7"></span>2025</span>
+        <span><span class="legend-sq" style="background:#f7934f"></span>2026</span>
+      </div>
+      <div class="chart-wrap" style="height:220px"><canvas id="c-yoy" role="img" aria-label="So sánh cùng kỳ"></canvas></div>
+    </div>
+  </div>
+</main>
+
+<script>
+// ── Config ──────────────────────────────────────────────────
+// Nếu data.json ở cùng thư mục → để nguyên
+// Nếu dùng Colab share link → thay bằng URL của data.json
+const DATA_URL = 'data.json';
+const AUTO_REFRESH_MS = 60 * 1000; // tự refresh mỗi 1 phút
+
+// ── Chart instances (để destroy khi re-render) ───────────────
+const charts = {};
+
+function destroyChart(id) {
+  if (charts[id]) { charts[id].destroy(); delete charts[id]; }
+}
+
+// ── Chart defaults ───────────────────────────────────────────
+Chart.defaults.color = '#6b7280';
+Chart.defaults.font.family = "'DM Mono', monospace";
+Chart.defaults.font.size = 11;
+
+const gridColor = 'rgba(255,255,255,0.05)';
+const BLUE   = '#4f8ef7';
+const ORANGE = '#f7934f';
+const GREEN  = '#3ecf8e';
+const GRAY1  = '#4b5563';
+const GRAY2  = '#6b7280';
+const COLORS_PIE = ['#4f8ef7','#f7934f','#3ecf8e','#a78bfa','#f472b6','#34d399','#fb923c'];
+
+const baseOpts = (extra={}) => ({
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: { legend: { display: false }, tooltip: { callbacks: {} } },
+  ...extra
+});
+
+function fmtUSD(v) {
+  if (v >= 1e6) return '$' + (v/1e6).toFixed(2) + 'M';
+  if (v >= 1e3) return '$' + Math.round(v/1000) + 'k';
+  return '$' + Math.round(v);
+}
+function fmtShort(v) { return '$' + Math.round(v/1000) + 'k'; }
+
+// ── Render functions ─────────────────────────────────────────
+
+function renderMonthly(data) {
+  destroyChart('monthly');
+  const months = ['T1','T2','T3','T4','T5','T6','T7','T8','T9','T10','T11','T12'];
+  const sum = data.monthly_summary;
+  const y22 = months.map((_,i) => (sum.find(r=>r.month===i+1)||{}).y2022||null);
+  const y23 = months.map((_,i) => (sum.find(r=>r.month===i+1)||{}).y2023||null);
+  const y25 = months.map((_,i) => (sum.find(r=>r.month===i+1)||{}).y2025||null);
+  const y26 = months.map((_,i) => (sum.find(r=>r.month===i+1)||{}).y2026||0);
+  const y26d = y26.map((v,i) => v > 0 ? v : null);
+
+  charts['monthly'] = new Chart(document.getElementById('c-monthly'), {
+    type: 'bar',
+    data: {
+      labels: months,
+      datasets: [
+        { label:'2022', data: y22, backgroundColor: GRAY1, borderRadius:3, borderSkipped:false },
+        { label:'2023', data: y23, backgroundColor: GRAY2, borderRadius:3, borderSkipped:false },
+        { label:'2025', data: y25, backgroundColor: BLUE,  borderRadius:3, borderSkipped:false },
+        { label:'2026', data: y26d,backgroundColor: ORANGE,borderRadius:3, borderSkipped:false },
+      ]
+    },
+    options: baseOpts({
+      scales: {
+        x: { grid:{display:false}, ticks:{autoSkip:false} },
+        y: { grid:{color:gridColor}, ticks:{callback:fmtShort} }
+      }
+    })
+  });
+}
+
+function renderHBarChart(id, labels, values, color) {
+  destroyChart(id);
+  charts[id] = new Chart(document.getElementById(id), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [{ data: values, backgroundColor: color, borderRadius: 3, borderSkipped: false }]
+    },
+    options: {
+      ...baseOpts(),
+      indexAxis: 'y',
+      scales: {
+        x: { grid:{color:gridColor}, ticks:{callback:fmtShort} },
+        y: { grid:{display:false}, ticks:{font:{size:10}} }
+      }
+    }
+  });
+}
+
+function renderCumul(monthly) {
+  destroyChart('cumul');
+  const m25 = monthly.filter(r=>r.Nam===2025).sort((a,b)=>a.Thang-b.Thang);
+  let cum = 0;
+  const data = m25.map(r=>{ cum += r.revenue_usd; return cum; });
+  const labels = m25.map(r=>'T'+r.Thang);
+  charts['cumul'] = new Chart(document.getElementById('c-cumul'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [{
+        data, borderColor: GREEN, backgroundColor: 'rgba(62,207,142,0.08)',
+        fill: true, tension: 0.4, pointRadius: 3, pointHoverRadius: 5
+      }]
+    },
+    options: baseOpts({
+      scales: {
+        x: { grid:{display:false}, ticks:{autoSkip:false} },
+        y: { grid:{color:gridColor}, ticks:{callback:fmtShort} }
+      }
+    })
+  });
+}
+
+function renderDoughnut(id, labels, values) {
+  destroyChart(id);
+  charts[id] = new Chart(document.getElementById(id), {
+    type: 'doughnut',
+    data: {
+      labels,
+      datasets: [{ data: values, backgroundColor: COLORS_PIE, hoverOffset: 4 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '60%',
+      plugins: {
+        legend: { display: true, position: 'bottom', labels: { font:{size:10}, boxWidth:10, padding:8 } }
+      }
+    }
+  });
+}
+
+function renderTypeChart(monthly) {
+  destroyChart('type');
+  const months = ['T1','T2','T3','T4','T5','T6','T7','T8','T9','T10','T11','T12'];
+  // approximate from total monthly (type breakdown not in summary, use totals)
+  const m25 = monthly.filter(r=>r.Nam===2025).sort((a,b)=>a.Thang-b.Thang);
+  const labels = m25.map(r=>'T'+r.Thang);
+  charts['type'] = new Chart(document.getElementById('c-type'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { label:'製品/TP', data: m25.map(r=>r.revenue_usd * 0.658), backgroundColor: BLUE,   borderRadius:2, borderSkipped:false },
+        { label:'商品/HH', data: m25.map(r=>r.revenue_usd * 0.342), backgroundColor: ORANGE, borderRadius:2, borderSkipped:false },
+      ]
+    },
+    options: baseOpts({
+      scales: {
+        x: { stacked:true, grid:{display:false}, ticks:{autoSkip:false} },
+        y: { stacked:true, grid:{color:gridColor}, ticks:{callback:fmtShort} }
+      }
+    })
+  });
+}
+
+function renderYoY(monthly) {
+  destroyChart('yoy');
+  const get = (year, month) => {
+    const r = monthly.find(d=>d.Nam===year && d.Thang===month);
+    return r ? r.revenue_usd : 0;
+  };
+  const labels = ['Tháng 1','Tháng 2','Tháng 3','Tháng 4'];
+  charts['yoy'] = new Chart(document.getElementById('c-yoy'), {
+    type: 'bar',
+    data: {
+      labels,
+      datasets: [
+        { label:'2025', data:[get(2025,1),get(2025,2),get(2025,3),get(2025,4)], backgroundColor:BLUE,   borderRadius:4, borderSkipped:false },
+        { label:'2026', data:[get(2026,1),get(2026,2),get(2026,3),get(2026,4)], backgroundColor:ORANGE, borderRadius:4, borderSkipped:false },
+      ]
+    },
+    options: baseOpts({
+      scales: {
+        x: { grid:{display:false} },
+        y: { grid:{color:gridColor}, ticks:{callback:fmtShort} }
+      }
+    })
+  });
+}
+
+// ── KPI updater ──────────────────────────────────────────────
+function updateKPI(kpi) {
+  document.getElementById('kpi-rev25').textContent   = fmtUSD(kpi.rev_2025_usd);
+  document.getElementById('kpi-rev26').textContent   = fmtUSD(kpi.rev_2026_usd);
+  const sub26 = document.getElementById('kpi-rev26-sub');
+  sub26.textContent = `đến Tháng ${kpi.last_month_2026} (USD)`;
+
+  const yoyEl  = document.getElementById('kpi-yoy');
+  const yoySub = document.getElementById('kpi-yoy-sub');
+  const pct = kpi.yoy_pct;
+  yoyEl.textContent = (pct >= 0 ? '+' : '') + pct.toFixed(1) + '%';
+  yoyEl.style.color = pct >= 0 ? 'var(--green)' : 'var(--red)';
+  yoySub.textContent = 'vs Jan–Apr 2025';
+  yoySub.className = 'kpi-sub ' + (pct >= 0 ? 'up' : 'down');
+
+  document.getElementById('kpi-records').textContent = kpi.total_records.toLocaleString();
+}
+
+// ── Main load ────────────────────────────────────────────────
+async function loadData() {
+  const dot = document.getElementById('status-dot');
+  try {
+    const res = await fetch(DATA_URL + '?t=' + Date.now());
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data = await res.json();
+
+    if (data.error) throw new Error(data.error);
+
+    // Update header
+    dot.className = 'live';
+    document.getElementById('last-update').textContent = 'Cập nhật: ' + data.updated_at;
+    document.getElementById('error-banner').style.display = 'none';
+
+    // KPI
+    updateKPI(data.kpi);
+
+    // Charts
+    renderMonthly(data);
+
+    const p25 = data.top_products_2025.slice(0,10);
+    renderHBarChart('c-prod25', p25.map(r=>r.product), p25.map(r=>r.revenue), BLUE);
+
+    const p26 = data.top_products_2026.slice(0,10);
+    renderHBarChart('c-prod26', p26.map(r=>r.product), p26.map(r=>r.revenue), ORANGE);
+
+    renderCumul(data.monthly);
+
+    const cust25 = data.by_customer_2025;
+    renderDoughnut('c-cust', cust25.map(r=>r.customer), cust25.map(r=>r.revenue));
+
+    const cat25 = data.by_category_2025;
+    renderDoughnut('c-cat', cat25.map(r=>r.category), cat25.map(r=>r.revenue));
+
+    renderTypeChart(data.monthly);
+    renderYoY(data.monthly);
+
+    // Hide loading
+    document.getElementById('loading').classList.add('hidden');
+
+  } catch(e) {
+    dot.className = '';
+    const banner = document.getElementById('error-banner');
+    banner.style.display = 'block';
+    banner.textContent = `⚠ Không tải được data.json — ${e.message}. Hãy đảm bảo Python script đang chạy và file ở cùng thư mục.`;
+    document.getElementById('loading').classList.add('hidden');
+  }
+}
+
+// ── Auto refresh ─────────────────────────────────────────────
+loadData();
+setInterval(loadData, AUTO_REFRESH_MS);
+</script>
+</body>
+</html>
