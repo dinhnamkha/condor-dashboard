@@ -1,0 +1,354 @@
+{
+  "updated_at": "26/05/2026 03:22:42",
+  "kpi": {
+    "rev_2025_usd": 2585098.3600000003,
+    "rev_2026_usd": 840066.06,
+    "rev_2025_vnd": 66822207037.228004,
+    "rev_2026_vnd": 22223204221.908,
+    "rev_2025_jan4_usd": 936451.11,
+    "yoy_pct": -10.3,
+    "last_month_2026": 4,
+    "total_records": 1882
+  },
+  "monthly": [
+    {
+      "Nam": 2025,
+      "Thang": 1,
+      "revenue_usd": 285950.87,
+      "revenue_vnd": 7161901669.0,
+      "quantity": 370584.0
+    },
+    {
+      "Nam": 2025,
+      "Thang": 2,
+      "revenue_usd": 217369.33,
+      "revenue_vnd": 5508885860.0,
+      "quantity": 65546.0
+    },
+    {
+      "Nam": 2025,
+      "Thang": 3,
+      "revenue_usd": 216880.0,
+      "revenue_vnd": 5500788521.0,
+      "quantity": 269363.0
+    },
+    {
+      "Nam": 2025,
+      "Thang": 4,
+      "revenue_usd": 216250.91,
+      "revenue_vnd": 5565544413.0,
+      "quantity": 205246.0
+    },
+    {
+      "Nam": 2025,
+      "Thang": 5,
+      "revenue_usd": 105936.6,
+      "revenue_vnd": 2758011288.0,
+      "quantity": 31809.0
+    },
+    {
+      "Nam": 2025,
+      "Thang": 6,
+      "revenue_usd": 214973.68,
+      "revenue_vnd": 5573994860.0,
+      "quantity": 97132.0
+    },
+    {
+      "Nam": 2025,
+      "Thang": 7,
+      "revenue_usd": 217157.85,
+      "revenue_vnd": 5641789198.88,
+      "quantity": 262562.0
+    },
+    {
+      "Nam": 2025,
+      "Thang": 8,
+      "revenue_usd": 156672.11,
+      "revenue_vnd": 4098648504.5,
+      "quantity": 135203.0
+    },
+    {
+      "Nam": 2025,
+      "Thang": 9,
+      "revenue_usd": 191243.238,
+      "revenue_vnd": 5010285394.728,
+      "quantity": 124729.0
+    },
+    {
+      "Nam": 2025,
+      "Thang": 10,
+      "revenue_usd": 193841.036,
+      "revenue_vnd": 5148458546.504,
+      "quantity": 83847.0
+    },
+    {
+      "Nam": 2025,
+      "Thang": 11,
+      "revenue_usd": 175910.986,
+      "revenue_vnd": 4599571374.746,
+      "quantity": 205052.0
+    },
+    {
+      "Nam": 2025,
+      "Thang": 12,
+      "revenue_usd": 392911.75,
+      "revenue_vnd": 10254327406.87,
+      "quantity": 196348.0
+    },
+    {
+      "Nam": 2026,
+      "Thang": 1,
+      "revenue_usd": 223939.31,
+      "revenue_vnd": 5967958451.83,
+      "quantity": 186353.34
+    },
+    {
+      "Nam": 2026,
+      "Thang": 2,
+      "revenue_usd": 184609.314,
+      "revenue_vnd": 4838072201.18,
+      "quantity": 72562.2
+    },
+    {
+      "Nam": 2026,
+      "Thang": 3,
+      "revenue_usd": 214205.018,
+      "revenue_vnd": 5713659538.408,
+      "quantity": 155683.0
+    },
+    {
+      "Nam": 2026,
+      "Thang": 4,
+      "revenue_usd": 217312.418,
+      "revenue_vnd": 5703514030.49,
+      "quantity": 162522.0
+    }
+  ],
+  "monthly_summary": [
+    {
+      "month": 1,
+      "y2022": 257068.07,
+      "y2023": 320627.71,
+      "y2025": 285950.87,
+      "y2026": 0.0
+    },
+    {
+      "month": 2,
+      "y2022": 157062.90999999997,
+      "y2023": 286540.19,
+      "y2025": 217369.33000000002,
+      "y2026": 0.0
+    },
+    {
+      "month": 3,
+      "y2022": 260454.65000000002,
+      "y2023": 220832.53999999998,
+      "y2025": 216880.0,
+      "y2026": 0.0
+    },
+    {
+      "month": 4,
+      "y2022": 257674.05999999997,
+      "y2023": 225177.43,
+      "y2025": 216250.91,
+      "y2026": 0.0
+    },
+    {
+      "month": 5,
+      "y2022": 140179.69999999998,
+      "y2023": 160037.56,
+      "y2025": 105936.60000000003,
+      "y2026": 0.0
+    },
+    {
+      "month": 6,
+      "y2022": 188498.84999999998,
+      "y2023": 223818.25999999998,
+      "y2025": 214973.68,
+      "y2026": 0.0
+    },
+    {
+      "month": 7,
+      "y2022": 199118.4,
+      "y2023": 181900.68,
+      "y2025": 217157.84999999998,
+      "y2026": 0.0
+    },
+    {
+      "month": 8,
+      "y2022": 253984.45,
+      "y2023": 193807.52,
+      "y2025": 156672.10999999996,
+      "y2026": 0.0
+    },
+    {
+      "month": 9,
+      "y2022": 260194.82,
+      "y2023": 272590.33999999997,
+      "y2025": 191243.23799999998,
+      "y2026": 0.0
+    },
+    {
+      "month": 10,
+      "y2022": 243231.12,
+      "y2023": 202966.32,
+      "y2025": 193841.03600000002,
+      "y2026": 0.0
+    },
+    {
+      "month": 11,
+      "y2022": 243529.08000000002,
+      "y2023": 166831.07,
+      "y2025": 175910.986,
+      "y2026": 0.0
+    }
+  ],
+  "top_products_2025": [
+    {
+      "product": "New floor sheet",
+      "revenue": 383474.05
+    },
+    {
+      "product": "Umbrella",
+      "revenue": 217829.13
+    },
+    {
+      "product": "VBB",
+      "revenue": 211435.94
+    },
+    {
+      "product": "Moon",
+      "revenue": 147442.3
+    },
+    {
+      "product": "Alumi die casting",
+      "revenue": 135377.92
+    },
+    {
+      "product": "Cart Y-1",
+      "revenue": 120292.31
+    },
+    {
+      "product": "Cart Y-2",
+      "revenue": 113638.88
+    },
+    {
+      "product": "Trash bin",
+      "revenue": 94400.75
+    },
+    {
+      "product": "Bag ECO",
+      "revenue": 89534.9
+    },
+    {
+      "product": "Baggage rack",
+      "revenue": 81578.51
+    }
+  ],
+  "top_products_2026": [
+    {
+      "product": "VBB",
+      "revenue": 129287.88
+    },
+    {
+      "product": "New floor sheet",
+      "revenue": 101570.77
+    },
+    {
+      "product": "Umbrella",
+      "revenue": 76113.9
+    },
+    {
+      "product": "Alumi die casting",
+      "revenue": 56340.479999999996
+    },
+    {
+      "product": "Bag ECO",
+      "revenue": 44118.7
+    },
+    {
+      "product": "Handle",
+      "revenue": 31069.8
+    },
+    {
+      "product": "Wire parts",
+      "revenue": 29902.010000000002
+    },
+    {
+      "product": "Baggage rack",
+      "revenue": 29121.25
+    },
+    {
+      "product": "Bench",
+      "revenue": 28537.57
+    },
+    {
+      "product": "Cart Y-1",
+      "revenue": 26298.309999999998
+    }
+  ],
+  "by_customer_2025": [
+    {
+      "customer": "YAMAZAKI",
+      "revenue": 2519265.76
+    },
+    {
+      "customer": "CHINA CONDOR",
+      "revenue": 65832.6
+    }
+  ],
+  "by_customer_2026": [
+    {
+      "customer": "YAMAZAKI",
+      "revenue": 838701.66
+    },
+    {
+      "customer": "China Condor",
+      "revenue": 1364.4
+    }
+  ],
+  "by_type_2025": [
+    {
+      "type": "商品/HH",
+      "revenue": 883042.37
+    },
+    {
+      "type": "製品/TP",
+      "revenue": 1703398.1
+    },
+    {
+      "type": "返品/hàng trả",
+      "revenue": -1342.11
+    }
+  ],
+  "by_category_2025": [
+    {
+      "category": "定番",
+      "revenue": 2005363.8699999999
+    },
+    {
+      "category": "2025新製品",
+      "revenue": 174594.1
+    },
+    {
+      "category": "2024新製品",
+      "revenue": 155633.04
+    },
+    {
+      "category": "2026新製品",
+      "revenue": 93410.88
+    },
+    {
+      "category": "別注",
+      "revenue": 74298.34
+    },
+    {
+      "category": "Mold",
+      "revenue": 63693.29
+    },
+    {
+      "category": "副資材",
+      "revenue": 18104.84
+    }
+  ]
+}
