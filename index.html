@@ -9,191 +9,130 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:        #f0ede8;
-  --surface:   #faf9f7;
-  --surface2:  #f0ede8;
-  --border:    #ddd9d2;
-  --border2:   #c8c3ba;
-  --ink:       #1c1a17;
-  --ink2:      #3d3a35;
-  --muted:     #8a8278;
-  --faint:     #b5b0a8;
-  --blue:      #1a5fb4;
-  --blue-lt:   #ddeaff;
-  --orange:    #c0622a;
-  --orange-lt: #fde8d8;
-  --green:     #2d7d46;
-  --green-lt:  #d4f0dc;
-  --red:       #c02a2a;
-  --red-lt:    #fdd8d8;
-  --yellow:    #9a7a00;
-  --yellow-lt: #fef5cc;
-  --c24:       #7e6b5a;
-  --c25:       #1a5fb4;
-  --c26:       #c0622a;
-  --c24-lt:    rgba(126,107,90,0.15);
-  --c25-lt:    rgba(26,95,180,0.15);
-  --c26-lt:    rgba(192,98,42,0.15);
-  --radius:    10px;
-  --shadow:    0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow2:   0 4px 12px rgba(0,0,0,0.08);
+  --bg:#f0ede8;
+  --surface:#faf9f7;
+  --surface2:#f0ede8;
+  --border:#ddd9d2;
+  --border2:#c8c3ba;
+  --ink:#1c1a17;
+  --ink2:#3d3a35;
+  --muted:#8a8278;
+  --faint:#b5b0a8;
+  --blue:#1a5fb4;
+  --blue-lt:#ddeaff;
+  --orange:#c0622a;
+  --orange-lt:#fde8d8;
+  --green:#2d7d46;
+  --green-lt:#d4f0dc;
+  --red:#c02a2a;
+  --red-lt:#fdd8d8;
+  --amber:#9a7a00;
+  --amber-lt:#fef5cc;
+  --purple:#7e5aa2;
+  --purple-lt:#f0e8fa;
+  --c25:#1a5fb4;
+  --c26:#c0622a;
+  --radius:10px;
+  --shadow:0 1px 3px rgba(0,0,0,0.06),0 1px 2px rgba(0,0,0,0.04);
+  --shadow2:0 4px 12px rgba(0,0,0,0.08);
 }
+body{background:var(--bg);color:var(--ink);font-family:'Noto Sans','Noto Sans JP',sans-serif;font-size:14px;line-height:1.6;min-height:100vh}
 
-body{
-  background:var(--bg);
-  color:var(--ink);
-  font-family:'Noto Sans','Noto Sans JP',sans-serif;
-  font-size:14px;
-  line-height:1.6;
-  min-height:100vh;
-}
-
-/* ── HEADER ─────────────────────────────────────────────── */
-header{
-  background:var(--ink);
-  color:#f0ede8;
-  padding:0 28px;
-  height:56px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  position:sticky;top:0;z-index:200;
-  box-shadow:0 2px 8px rgba(0,0,0,0.15);
-}
+/* HEADER */
+header{background:var(--ink);color:#f0ede8;padding:0 28px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;box-shadow:0 2px 8px rgba(0,0,0,0.15)}
 .h-brand{display:flex;align-items:baseline;gap:10px}
 .h-logo{font-family:'Noto Sans JP',sans-serif;font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;opacity:0.5}
 .h-title{font-size:13px;font-weight:600;letter-spacing:0.04em;color:#f0ede8}
 .h-title em{font-style:normal;opacity:0.55;font-size:11px;margin-left:4px}
 .h-right{display:flex;align-items:center;gap:16px}
-.status-row{display:flex;align-items:center;gap:6px}
 #dot{width:7px;height:7px;border-radius:50%;background:#8a8278;transition:background .4s}
 #dot.live{background:#3ecf8e;box-shadow:0 0 0 2px rgba(62,207,142,.25)}
 #ts{font-family:'DM Mono',monospace;font-size:11px;color:rgba(240,237,232,.4)}
-#rbtn{
-  font-family:'Noto Sans',sans-serif;
-  font-size:11px;background:rgba(255,255,255,.08);
-  color:rgba(240,237,232,.7);border:1px solid rgba(255,255,255,.12);
-  border-radius:6px;padding:4px 12px;cursor:pointer;
-  transition:all .2s;letter-spacing:0.03em;
-}
+#rbtn{font-family:'Noto Sans',sans-serif;font-size:11px;background:rgba(255,255,255,.08);color:rgba(240,237,232,.7);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:4px 12px;cursor:pointer;transition:all .2s}
 #rbtn:hover{background:rgba(255,255,255,.14);color:#f0ede8}
 
-/* ── MAIN ────────────────────────────────────────────────── */
+/* LAYOUT */
 main{max-width:1320px;margin:0 auto;padding:24px 24px 60px}
 
-/* ── SECTION HEADER ──────────────────────────────────────── */
-.sec-hd{
-  display:flex;align-items:flex-end;justify-content:space-between;
-  margin:28px 0 14px;
-  padding-bottom:10px;
-  border-bottom:1.5px solid var(--border);
-}
+/* SECTION HEADER */
+.sec-hd{display:flex;align-items:flex-end;justify-content:space-between;margin:32px 0 16px;padding-bottom:12px;border-bottom:2px solid var(--border2)}
 .sec-hd:first-of-type{margin-top:0}
-.sec-jp{font-family:'Noto Sans JP',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.12em;color:var(--muted)}
-.sec-vi{font-size:14px;font-weight:700;color:var(--ink);letter-spacing:0.02em}
+.sec-jp{font-family:'Noto Sans JP',sans-serif;font-size:12px;font-weight:500;letter-spacing:0.12em;color:var(--muted)}
+.sec-vi{font-size:20px;font-weight:700;color:var(--ink);letter-spacing:0.01em}
 
-/* ── KPI GRID ────────────────────────────────────────────── */
+/* YEAR LEGEND */
+.year-legend{display:flex;gap:16px;align-items:center;font-size:12px;color:var(--muted)}
+.yl-dot{width:10px;height:10px;border-radius:2px;display:inline-block;flex-shrink:0}
+
+/* KPI GRID */
 .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:4px}
-.kpi{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:18px 20px 16px;
-  box-shadow:var(--shadow);
-  position:relative;
-  overflow:hidden;
-  transition:box-shadow .2s;
-}
+.kpi{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px 16px;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:box-shadow .2s}
 .kpi:hover{box-shadow:var(--shadow2)}
-.kpi::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:3px;
-  background:var(--bar-color,var(--border));
-}
-.kpi.y24{--bar-color:var(--c24)}
+.kpi::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--bar-color,var(--border))}
 .kpi.y25{--bar-color:var(--c25)}
 .kpi.y26{--bar-color:var(--c26)}
-.kpi.total{--bar-color:var(--green)}
-.kpi-label{font-family:'Noto Sans JP',sans-serif;font-size:10px;font-weight:500;color:var(--muted);letter-spacing:0.08em;margin-bottom:6px}
-.kpi-sub-label{font-size:11px;color:var(--faint);margin-bottom:4px}
+.kpi.target{--bar-color:var(--amber)}
+.kpi.hits{--bar-color:var(--green)}
+.kpi-label{font-family:'Noto Sans JP',sans-serif;font-size:11px;font-weight:500;color:var(--muted);letter-spacing:0.08em;margin-bottom:6px}
 .kpi-val{font-family:'DM Mono',monospace;font-size:22px;font-weight:500;color:var(--ink);letter-spacing:-0.02em;margin-bottom:4px}
+.kpi-sub{font-size:11px;color:var(--faint);margin-bottom:4px}
 .kpi-tag{font-size:11px;font-weight:500;display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:4px;margin-top:2px}
 .kpi-tag.up{background:var(--green-lt);color:var(--green)}
 .kpi-tag.dn{background:var(--red-lt);color:var(--red)}
-.kpi-tag.flat{background:var(--yellow-lt);color:var(--yellow)}
+.kpi-tag.flat{background:var(--amber-lt);color:var(--amber)}
 
-/* ── YEAR LEGEND ─────────────────────────────────────────── */
-.year-legend{
-  display:flex;gap:20px;align-items:center;
-  font-size:11px;color:var(--muted);
-  margin-bottom:10px;
-}
-.yl-dot{width:10px;height:10px;border-radius:2px;display:inline-block;flex-shrink:0}
+/* TABLE */
+.tbl-outer{border:1px solid var(--border2);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.tbl-scroll{overflow-x:auto}
+table.mtbl{width:100%;border-collapse:collapse;font-size:14px}
+table.mtbl thead tr{background:var(--ink)}
+table.mtbl thead th{padding:13px 16px;text-align:left;font-size:12px;font-weight:600;color:rgba(240,237,232,.75);letter-spacing:0.06em;white-space:nowrap;border:none}
+table.mtbl thead th:not(:first-child){text-align:right}
+table.mtbl tbody tr{border-bottom:0.5px solid var(--border);transition:background .12s}
+table.mtbl tbody tr:hover{background:rgba(0,0,0,.025)}
+table.mtbl tbody tr.sep{background:var(--surface2);border-top:2px solid var(--border2)}
+table.mtbl tbody td{padding:13px 16px;vertical-align:middle;color:var(--ink)}
+table.mtbl tbody td:not(:first-child){text-align:right;font-variant-numeric:tabular-nums}
+.year-badge{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:4px;margin-right:6px}
+.y25b{background:var(--blue-lt);color:var(--blue)}
+.y26b{background:var(--orange-lt);color:var(--orange)}
+.month-lbl{font-weight:600;font-size:14px}
+.actual-val{font-size:15px;font-weight:600}
+.pct-wrap{display:flex;align-items:center;gap:10px;min-width:200px}
+.bar-bg{flex:1;height:8px;border-radius:4px;background:var(--surface2);overflow:hidden;min-width:90px}
+.bar-fill{height:100%;border-radius:4px}
+.pct-num{font-size:13px;font-weight:600;white-space:nowrap;min-width:40px;text-align:right}
+.chip{display:inline-flex;align-items:center;gap:3px;font-size:12px;font-weight:600;padding:3px 10px;border-radius:4px;white-space:nowrap}
+.chip.over{background:var(--green-lt);color:var(--green)}
+.chip.under{background:var(--red-lt);color:var(--red)}
+.chip.near{background:var(--amber-lt);color:var(--amber)}
+.tbl-foot{padding:12px 16px;font-size:12px;color:var(--muted);background:var(--surface2);border-top:1.5px solid var(--border2)}
 
-/* ── CHART GRID ──────────────────────────────────────────── */
+/* CHART GRID */
 .c-grid{display:grid;gap:14px;margin-bottom:14px}
-.c-grid.col2{grid-template-columns:1fr 1fr}
-.c-grid.col3{grid-template-columns:2fr 1fr 1fr}
-.c-grid.col31{grid-template-columns:3fr 1fr}
-
-.cbox{
-  background:var(--surface);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:20px 22px;
-  box-shadow:var(--shadow);
-}
-.cbox-title{
-  font-family:'Noto Sans JP',sans-serif;
-  font-size:10px;font-weight:500;
-  letter-spacing:0.1em;color:var(--muted);
-  margin-bottom:2px;
-}
-.cbox-title-vi{font-size:12px;font-weight:600;color:var(--ink2);margin-bottom:12px}
+.c-grid.c1{grid-template-columns:1fr}
+.c-grid.c2{grid-template-columns:1fr 1fr}
+.c-grid.c3{grid-template-columns:2fr 1fr 1fr}
+.c-grid.c31{grid-template-columns:3fr 1fr}
+.cbox{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow)}
+.cbox-jp{font-family:'Noto Sans JP',sans-serif;font-size:11px;font-weight:500;letter-spacing:0.1em;color:var(--muted);margin-bottom:2px}
+.cbox-vi{font-size:16px;font-weight:700;color:var(--ink2);margin-bottom:12px}
 .cbox-wrap{position:relative;width:100%}
+.note{font-size:11px;color:var(--faint);background:var(--surface2);border:1px solid var(--border);border-radius:6px;padding:8px 12px;margin-top:10px;font-style:italic}
 
-/* ── NOTE ────────────────────────────────────────────────── */
-.note{
-  font-size:11px;color:var(--faint);
-  background:var(--surface2);
-  border:1px solid var(--border);
-  border-radius:6px;
-  padding:8px 12px;
-  margin-top:10px;
-  font-style:italic;
-}
+/* LEG */
+.leg{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--muted);margin-bottom:10px}
+.leg span{display:flex;align-items:center;gap:5px}
+.leg-sq{width:10px;height:10px;border-radius:2px;display:inline-block;flex-shrink:0}
 
-/* ── ERROR ───────────────────────────────────────────────── */
-#err{
-  display:none;
-  background:var(--red-lt);border:1px solid #f5b8b8;
-  border-radius:var(--radius);color:var(--red);
-  padding:12px 16px;font-size:13px;margin-bottom:16px;
-}
-
-/* ── LOADING ─────────────────────────────────────────────── */
-#loading{
-  position:fixed;inset:0;background:var(--bg);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:14px;z-index:999;transition:opacity .5s;
-}
+/* ERROR / LOADING */
+#err{display:none;background:var(--red-lt);border:1px solid #f5b8b8;border-radius:var(--radius);color:var(--red);padding:12px 16px;font-size:13px;margin-bottom:16px}
+#loading{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:999;transition:opacity .5s}
 #loading.out{opacity:0;pointer-events:none}
-.spin{
-  width:30px;height:30px;
-  border:2px solid var(--border);
-  border-top-color:var(--blue);
-  border-radius:50%;
-  animation:spin .75s linear infinite;
-}
+.spin{width:30px;height:30px;border:2px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin .75s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .load-txt{font-size:12px;color:var(--muted)}
-
-/* ── FOOTER ──────────────────────────────────────────────── */
-footer{
-  text-align:center;padding:24px;
-  font-size:11px;color:var(--faint);
-  border-top:1px solid var(--border);
-  margin-top:40px;
-}
+footer{text-align:center;padding:24px;font-size:11px;color:var(--faint);border-top:1px solid var(--border);margin-top:40px}
 </style>
 </head>
 <body>
@@ -206,7 +145,7 @@ footer{
     <span class="h-title">輸出売上ダッシュボード <em>Doanh Thu Xuất Khẩu</em></span>
   </div>
   <div class="h-right">
-    <div class="status-row"><div id="dot"></div><span id="ts">—</span></div>
+    <div style="display:flex;align-items:center;gap:6px"><div id="dot"></div><span id="ts">—</span></div>
     <button id="rbtn" onclick="loadData()">↻ 更新 / Refresh</button>
   </div>
 </header>
@@ -214,294 +153,390 @@ footer{
 <main>
   <div id="err"></div>
 
-  <!-- KPI ── 概要 / Tổng Quan -->
+  <!-- ══════════ KPI ══════════ -->
   <div class="sec-hd">
-    <div>
-      <div class="sec-jp">売上概要 · 年間比較</div>
-      <div class="sec-vi">Tổng Quan · So Sánh Năm 2024 / 2025 / 2026</div>
-    </div>
+    <div><div class="sec-jp">売上概要 · 2025年 / 2026年比較</div><div class="sec-vi">Tổng Quan — So Sánh 2025 & 2026</div></div>
     <div class="year-legend">
-      <span><span class="yl-dot" style="background:var(--c24)"></span>2024</span>
       <span><span class="yl-dot" style="background:var(--c25)"></span>2025</span>
       <span><span class="yl-dot" style="background:var(--c26)"></span>2026</span>
     </div>
   </div>
 
   <div class="kpi-grid">
-    <div class="kpi y24">
-      <div class="kpi-label">2024年 年間売上 / Doanh Thu Cả Năm 2024</div>
-      <div class="kpi-val">$2,557,132</div>
-      <div class="kpi-sub-label">USD · Cả năm</div>
-      <span class="kpi-tag dn">▼ 3.9% vs 2023</span>
-    </div>
     <div class="kpi y25">
       <div class="kpi-label">2025年 年間売上 / Doanh Thu Cả Năm 2025</div>
       <div class="kpi-val" id="kpi25">—</div>
-      <div class="kpi-sub-label">USD · Cả năm</div>
+      <div class="kpi-sub">USD · 12 tháng đầy đủ</div>
       <span class="kpi-tag" id="kpi25-tag"></span>
     </div>
     <div class="kpi y26">
-      <div class="kpi-label">2026年 累計売上 / Doanh Thu Lũy Kế 2026</div>
+      <div class="kpi-label">2026年 累計売上 / Lũy Kế 2026</div>
       <div class="kpi-val" id="kpi26">—</div>
-      <div class="kpi-sub-label" id="kpi26-sub">USD</div>
+      <div class="kpi-sub" id="kpi26-sub">USD</div>
       <span class="kpi-tag" id="kpi26-tag"></span>
     </div>
-    <div class="kpi total">
-      <div class="kpi-label">総売上件数 / Tổng Số Giao Dịch</div>
-      <div class="kpi-val" id="kpi-rec">—</div>
-      <div class="kpi-sub-label">Records (2025–2026)</div>
-      <span class="kpi-tag flat" id="kpi-last">—</span>
+    <div class="kpi target">
+      <div class="kpi-label">月次目標 / Mục Tiêu Mỗi Tháng</div>
+      <div class="kpi-val">$200,000</div>
+      <div class="kpi-sub">USD · cố định</div>
+      <span class="kpi-tag flat">目標 / Target</span>
+    </div>
+    <div class="kpi hits">
+      <div class="kpi-label">目標達成月数 2025 / Tháng Đạt Mục Tiêu</div>
+      <div class="kpi-val" id="kpi-hit">—</div>
+      <div class="kpi-sub" id="kpi-hit-sub">/ 12 tháng</div>
+      <span class="kpi-tag" id="kpi-hit-tag"></span>
     </div>
   </div>
 
-  <!-- KPI bar: annual comparison -->
-  <div class="c-grid" style="margin-top:14px">
+  <!-- ══════════ ANNUAL 4-YEAR ══════════ -->
+  <div class="sec-hd" style="margin-top:36px">
+    <div><div class="sec-jp">年間売上推移 · 4年間比較</div><div class="sec-vi">Doanh Thu Hàng Năm — So Sánh 4 Năm (USD)</div></div>
+  </div>
+  <div class="c-grid c1">
     <div class="cbox">
-      <div class="cbox-title">年間売上推移 · 比較</div>
-      <div class="cbox-title-vi">Doanh Thu Hàng Năm — So Sánh 4 Năm (USD)</div>
-      <div class="year-legend">
-        <span><span class="yl-dot" style="background:#b5b0a8"></span>2022</span>
-        <span><span class="yl-dot" style="background:#8a8278"></span>2023</span>
-        <span><span class="yl-dot" style="background:var(--c24)"></span>2024</span>
-        <span><span class="yl-dot" style="background:var(--c25)"></span>2025</span>
-        <span><span class="yl-dot" style="background:var(--c26)"></span>2026 (Jan–Apr)</span>
+      <div class="cbox-jp">年間売上金額 (USD) · 2022〜2026年</div>
+      <div class="cbox-vi">Biểu Đồ Doanh Thu Hàng Năm 2022 → 2026 (USD)</div>
+      <div class="leg">
+        <span><span class="leg-sq" style="background:#b5b0a8"></span>2022: $2,738,634</span>
+        <span><span class="leg-sq" style="background:#8a8278"></span>2023: $2,661,567</span>
+        <span><span class="leg-sq" style="background:#7e6b5a"></span>2024: $2,557,132</span>
+        <span><span class="leg-sq" style="background:var(--c25)"></span>2025: $2,585,098</span>
+        <span><span class="leg-sq" style="background:var(--c26)"></span>2026 (Jan–Apr): $840,066</span>
       </div>
-      <div class="cbox-wrap" style="height:160px"><canvas id="c-annual"></canvas></div>
+      <div class="cbox-wrap" style="height:200px">
+        <canvas id="c-annual" role="img" aria-label="Biểu đồ doanh thu hàng năm từ 2022 đến 2026">2022: $2.74M, 2023: $2.66M, 2024: $2.56M, 2025: $2.59M, 2026 Jan-Apr: $840k.</canvas>
+      </div>
     </div>
   </div>
 
-  <!-- MONTHLY CHART ── 月次売上 / Doanh Thu Theo Tháng -->
-  <div class="sec-hd">
-    <div>
-      <div class="sec-jp">月次売上推移 · 2025年 vs 2026年</div>
-      <div class="sec-vi">Doanh Thu Theo Tháng — So Sánh 2025 / 2026</div>
+  <!-- ══════════ TARGET TABLE ══════════ -->
+  <div class="sec-hd" style="margin-top:36px">
+    <div><div class="sec-jp">月次目標達成状況 · 詳細テーブル</div><div class="sec-vi">Theo Dõi Doanh Số Theo Tháng — Mục Tiêu $200,000 / Tháng</div></div>
+  </div>
+
+  <div class="tbl-outer">
+    <div class="tbl-scroll">
+      <table class="mtbl">
+        <thead>
+          <tr>
+            <th style="min-width:150px">Tháng / 月</th>
+            <th>Mục tiêu / 目標 (USD)</th>
+            <th>Doanh thu / 売上 (USD)</th>
+            <th style="min-width:230px">% Đạt được / 達成率</th>
+            <th>Chênh lệch / 差額 (USD)</th>
+            <th>Trạng thái / 状態</th>
+          </tr>
+        </thead>
+        <tbody id="tbl-body"></tbody>
+      </table>
     </div>
+    <div class="tbl-foot" id="tbl-foot">—</div>
+  </div>
+
+  <!-- ══════════ MONTHLY CHART ══════════ -->
+  <div class="sec-hd" style="margin-top:36px">
+    <div><div class="sec-jp">月次売上推移 · 目標ライン付き</div><div class="sec-vi">Doanh Thu Theo Tháng — So Sánh 2025 & 2026 với Mục Tiêu $200k</div></div>
     <div class="year-legend">
       <span><span class="yl-dot" style="background:var(--c25)"></span>2025</span>
       <span><span class="yl-dot" style="background:var(--c26)"></span>2026</span>
+      <span><span class="yl-dot" style="background:#2d7d46;opacity:.7"></span>Mục tiêu</span>
     </div>
   </div>
-  <div class="c-grid">
+  <div class="c-grid c1">
     <div class="cbox">
-      <div class="cbox-title">月次売上金額 (USD)</div>
-      <div class="cbox-title-vi">Doanh Thu Tháng — USD (2025 vs 2026)</div>
-      <div class="cbox-wrap" style="height:240px"><canvas id="c-monthly"></canvas></div>
-      <div class="note">⚠ Dữ liệu tháng năm 2024 không có trong file. Chỉ có tổng năm 2024: $2,557,132 USD (−3.9% so với 2023).</div>
-    </div>
-  </div>
-
-  <!-- JAN-APR COMPARISON ── 月別比較 -->
-  <div class="c-grid col2">
-    <div class="cbox">
-      <div class="cbox-title">1〜4月 売上比較 (USD)</div>
-      <div class="cbox-title-vi">So Sánh Jan–Apr: 2024 / 2025 / 2026 (USD)</div>
-      <div class="year-legend">
-        <span><span class="yl-dot" style="background:var(--c24)"></span>2024 (ước tính bình quân)</span>
-        <span><span class="yl-dot" style="background:var(--c25)"></span>2025</span>
-        <span><span class="yl-dot" style="background:var(--c26)"></span>2026</span>
+      <div class="cbox-jp">月次売上金額 (USD) · 目標 $200,000</div>
+      <div class="cbox-vi">Biểu Đồ Doanh Thu Tháng (USD) — Đường Mục Tiêu $200,000</div>
+      <div class="cbox-wrap" style="height:260px">
+        <canvas id="c-monthly" role="img" aria-label="Doanh thu hàng tháng 2025 và 2026 so với mục tiêu 200,000 USD">Dữ liệu 2025 và 2026, mục tiêu $200k/tháng.</canvas>
       </div>
-      <div class="cbox-wrap" style="height:220px"><canvas id="c-janapr"></canvas></div>
-    </div>
-    <div class="cbox">
-      <div class="cbox-title">売上推移 · 累計 (USD)</div>
-      <div class="cbox-title-vi">Doanh Thu Lũy Kế 2025 (USD)</div>
-      <div class="cbox-wrap" style="height:220px"><canvas id="c-cumul"></canvas></div>
     </div>
   </div>
 
-  <!-- PRODUCTS & CUSTOMERS ── 商品・顧客 -->
-  <div class="sec-hd">
-    <div>
-      <div class="sec-jp">商品・顧客別売上 · 比較</div>
-      <div class="sec-vi">Sản Phẩm & Khách Hàng — So Sánh 2025 / 2026</div>
-    </div>
+  <!-- ══════════ PRODUCTS & CUSTOMERS ══════════ -->
+  <div class="sec-hd" style="margin-top:36px">
+    <div><div class="sec-jp">商品・顧客別売上 · 比較</div><div class="sec-vi">Sản Phẩm & Khách Hàng — So Sánh 2025 & 2026</div></div>
   </div>
-
-  <div class="c-grid col2">
+  <div class="c-grid c2">
     <div class="cbox">
-      <div class="cbox-title">売上上位商品 2025年 TOP 10</div>
-      <div class="cbox-title-vi">Top 10 Sản Phẩm — 2025 (USD)</div>
-      <div class="cbox-wrap" style="height:320px"><canvas id="c-p25"></canvas></div>
-    </div>
-    <div class="cbox">
-      <div class="cbox-title">売上上位商品 2026年 TOP 10 (Jan–Apr)</div>
-      <div class="cbox-title-vi">Top 10 Sản Phẩm — 2026 Jan–Apr (USD)</div>
-      <div class="cbox-wrap" style="height:320px"><canvas id="c-p26"></canvas></div>
-    </div>
-  </div>
-
-  <div class="c-grid col3">
-    <div class="cbox">
-      <div class="cbox-title">顧客別売上比較 (USD)</div>
-      <div class="cbox-title-vi">Doanh Thu Theo Khách Hàng — 2024 / 2025 / 2026 (USD)</div>
-      <div class="year-legend">
-        <span><span class="yl-dot" style="background:var(--c24)"></span>2024</span>
-        <span><span class="yl-dot" style="background:var(--c25)"></span>2025</span>
-        <span><span class="yl-dot" style="background:var(--c26)"></span>2026 (Jan–Apr)</span>
+      <div class="cbox-jp">売上上位商品 2025年 TOP 10</div>
+      <div class="cbox-vi">Top 10 Sản Phẩm — 2025 (USD)</div>
+      <div class="cbox-wrap" style="height:340px">
+        <canvas id="c-p25" role="img" aria-label="Top 10 sản phẩm 2025">Top 10 sản phẩm doanh thu cao nhất 2025.</canvas>
       </div>
-      <div class="cbox-wrap" style="height:220px"><canvas id="c-cust"></canvas></div>
     </div>
     <div class="cbox">
-      <div class="cbox-title">商品分類別 2025年</div>
-      <div class="cbox-title-vi">Cơ Cấu Sản Phẩm — 2025</div>
-      <div class="cbox-wrap" style="height:220px"><canvas id="c-cat"></canvas></div>
-    </div>
-    <div class="cbox">
-      <div class="cbox-title">製品種別 2025年</div>
-      <div class="cbox-title-vi">Thành Phẩm / Hàng Hóa — 2025</div>
-      <div class="cbox-wrap" style="height:220px"><canvas id="c-type"></canvas></div>
+      <div class="cbox-jp">売上上位商品 2026年 TOP 10 (Jan–Apr)</div>
+      <div class="cbox-vi">Top 10 Sản Phẩm — 2026 Jan–Apr (USD)</div>
+      <div class="cbox-wrap" style="height:340px">
+        <canvas id="c-p26" role="img" aria-label="Top 10 sản phẩm 2026">Top 10 sản phẩm doanh thu cao nhất 2026.</canvas>
+      </div>
     </div>
   </div>
 
-  <!-- CUMULATIVE BREAKDOWN ── 売上分析 -->
-  <div class="sec-hd">
-    <div>
-      <div class="sec-jp">製品別・定番分類別売上</div>
-      <div class="sec-vi">Phân Tích Theo Loại Sản Phẩm & Định Biên</div>
-    </div>
-  </div>
-  <div class="c-grid col2">
+  <div class="c-grid c3">
     <div class="cbox">
-      <div class="cbox-title">月次 製品種別 2025年</div>
-      <div class="cbox-title-vi">Thành Phẩm vs Hàng Hóa — Theo Tháng 2025</div>
-      <div class="year-legend">
-        <span><span class="yl-dot" style="background:var(--c25)"></span>製品/TP (Thành phẩm)</span>
-        <span><span class="yl-dot" style="background:#9b8aad"></span>商品/HH (Hàng hóa)</span>
+      <div class="cbox-jp">顧客別売上比較 (USD)</div>
+      <div class="cbox-vi">Doanh Thu Theo Khách Hàng — 2025 & 2026 (USD)</div>
+      <div class="leg">
+        <span><span class="leg-sq" style="background:var(--c25)"></span>2025</span>
+        <span><span class="leg-sq" style="background:var(--c26)"></span>2026 (Jan–Apr)</span>
       </div>
-      <div class="cbox-wrap" style="height:220px"><canvas id="c-typemon"></canvas></div>
+      <div class="cbox-wrap" style="height:220px">
+        <canvas id="c-cust" role="img" aria-label="So sánh doanh thu khách hàng">YAMAZAKI và CHINA CONDOR 2025 vs 2026.</canvas>
+      </div>
     </div>
     <div class="cbox">
-      <div class="cbox-title">定番分類別売上 2025年</div>
-      <div class="cbox-title-vi">Doanh Thu Theo Định Biên Sản Phẩm — 2025 (USD)</div>
-      <div class="cbox-wrap" style="height:220px"><canvas id="c-dinh"></canvas></div>
+      <div class="cbox-jp">商品分類別 2025年</div>
+      <div class="cbox-vi">Cơ Cấu Sản Phẩm — 2025</div>
+      <div class="cbox-wrap" style="height:220px">
+        <canvas id="c-cat" role="img" aria-label="Cơ cấu phân loại sản phẩm 2025">Tỷ trọng nhóm sản phẩm 2025.</canvas>
+      </div>
+    </div>
+    <div class="cbox">
+      <div class="cbox-jp">累計売上 2025年</div>
+      <div class="cbox-vi">Doanh Thu Lũy Kế — 2025</div>
+      <div class="cbox-wrap" style="height:220px">
+        <canvas id="c-cumul" role="img" aria-label="Lũy kế doanh thu 2025">Lũy kế 12 tháng 2025.</canvas>
+      </div>
     </div>
   </div>
 </main>
 
-<footer>輸出売上ダッシュボード · Condor Export Sales Dashboard · Dữ liệu từ file Excel · Cập nhật tự động</footer>
+<footer>輸出売上ダッシュボード · Condor Export Sales Dashboard · Dữ liệu từ file Excel · Cập nhật tự động khi data.json thay đổi</footer>
 
 <script>
-const DATA_URL = 'data.json';
-const REFRESH  = 60000;
-const charts   = {};
+const DATA_URL   = 'data.json';
+const REFRESH_MS = 60000;
+const TARGET     = 200000;
+const charts     = {};
 
-// ── PALETTE ─────────────────────────────────────────────────
-const C24   = '#7e6b5a';
-const C25   = '#1a5fb4';
-const C26   = '#c0622a';
-const CGRAY = '#b5b0a8';
-const CGRAY2= '#8a8278';
-const CPUR  = '#9b8aad';
-const CGRN  = '#2d7d46';
-const PIE   = ['#1a5fb4','#c0622a','#2d7d46','#7e6b5a','#9b8aad','#c0962a','#2a8a8a','#a04040'];
-const GRID  = 'rgba(0,0,0,0.05)';
+const C25  = '#1a5fb4';
+const C26  = '#c0622a';
+const CGRN = '#2d7d46';
+const CGRAY1 = '#b5b0a8';
+const CGRAY2 = '#8a8278';
+const CBROWN = '#7e6b5a';
+const PIE  = ['#1a5fb4','#c0622a','#2d7d46','#7e6b5a','#9b8aad','#c0962a','#2a8a8a','#a04040'];
+const GRID = 'rgba(0,0,0,0.06)';
+
+const MONTHS_VI = ['Tháng 1','Tháng 2','Tháng 3','Tháng 4','Tháng 5','Tháng 6','Tháng 7','Tháng 8','Tháng 9','Tháng 10','Tháng 11','Tháng 12'];
+const LABELS12  = ['T1','T2','T3','T4','T5','T6','T7','T8','T9','T10','T11','T12'];
 
 Chart.defaults.font.family = "'Noto Sans','Noto Sans JP',sans-serif";
 Chart.defaults.font.size   = 11;
 Chart.defaults.color       = '#8a8278';
 
-const baseOpts = (ex={}) => ({
-  responsive:true, maintainAspectRatio:false,
-  plugins:{legend:{display:false}},
-  ...ex
-});
-const scaleOpts = (yFmt) => ({
-  x:{grid:{display:false},ticks:{autoSkip:false}},
-  y:{grid:{color:GRID},ticks:{callback:yFmt}}
-});
-
 function kill(id){if(charts[id]){charts[id].destroy();delete charts[id]}}
+
 function fmtK(v){
-  if(v==null)return'';
-  if(v>=1e6)return'$'+(v/1e6).toFixed(2)+'M';
+  if(v==null||isNaN(v))return'—';
+  if(Math.abs(v)>=1e6)return'$'+(v/1e6).toFixed(2)+'M';
   return'$'+Math.round(v/1000)+'k';
 }
-function fmtKtick(v){return'$'+Math.round(v/1000)+'k'}
+function fmtFull(v){
+  if(v==null||isNaN(v))return'—';
+  return'$'+Math.round(v).toLocaleString('en-US');
+}
 
-// ── RENDER ANNUAL BAR ────────────────────────────────────────
+/* ── KPI ───────────────────────────────────────────────── */
+function updateKPI(kpi){
+  document.getElementById('kpi25').textContent = fmtK(kpi.rev_2025_usd);
+  const pct25 = ((kpi.rev_2025_usd - 2557132)/2557132*100);
+  const t25 = document.getElementById('kpi25-tag');
+  t25.textContent = (pct25>=0?'▲ ':'▼ ')+Math.abs(pct25).toFixed(1)+'% vs 2024';
+  t25.className   = 'kpi-tag '+(pct25>=0?'up':'dn');
+
+  document.getElementById('kpi26').textContent     = fmtK(kpi.rev_2026_usd);
+  document.getElementById('kpi26-sub').textContent = 'USD · đến Tháng '+kpi.last_month_2026+'/2026';
+  const pct26 = kpi.yoy_pct || 0;
+  const t26 = document.getElementById('kpi26-tag');
+  t26.textContent = (pct26>=0?'▲ ':'▼ ')+Math.abs(pct26).toFixed(1)+'% vs cùng kỳ 2025';
+  t26.className   = 'kpi-tag '+(pct26>=0?'up':'dn');
+}
+
+/* ── TABLE ─────────────────────────────────────────────── */
+function buildTable(monthly){
+  const tbody = document.getElementById('tbl-body');
+  const allRows = [];
+  for(let m=1;m<=12;m++){
+    const r25=monthly.find(d=>d.Nam===2025&&d.Thang===m);
+    if(r25)allRows.push({year:2025,month:m,actual:r25.revenue_usd});
+  }
+  for(let m=1;m<=12;m++){
+    const r26=monthly.find(d=>d.Nam===2026&&d.Thang===m);
+    if(r26)allRows.push({year:2026,month:m,actual:r26.revenue_usd});
+  }
+
+  let hit25=0, hit26=0, diff25=0, diff26=0;
+  let rows = '';
+
+  allRows.forEach(({year,month,actual},idx)=>{
+    const isFirst26 = year===2026 && allRows[idx-1]?.year===2025;
+    const pct     = actual/TARGET*100;
+    const diff    = actual - TARGET;
+    const isOver  = diff >= 0;
+    const isNear  = !isOver && pct >= 80;
+    const barW    = Math.min(pct, 130);
+    const barCol  = pct>=100 ? CGRN : pct>=80 ? C26 : '#c02a2a';
+    const chipCls = pct>=100 ? 'over' : isNear ? 'near' : 'under';
+    const chipTxt = pct>=100 ? (pct>=120?'▲ Vượt mục tiêu':'✓ Đạt mục tiêu') : isNear ? '◎ Gần đạt (≥80%)' : '✗ Chưa đạt';
+
+    if(year===2025){if(isOver)hit25++;diff25+=diff;}
+    if(year===2026){if(isOver)hit26++;diff26+=diff;}
+
+    const sepClass = isFirst26 ? ' class="sep"' : '';
+    rows += `<tr${sepClass}>
+      <td><span class="year-badge ${year===2025?'y25b':'y26b'}">${year}</span><span class="month-lbl">${MONTHS_VI[month-1]}</span></td>
+      <td style="color:var(--muted)">${fmtFull(TARGET)}</td>
+      <td><span class="actual-val" style="color:${year===2025?C25:C26}">${fmtFull(actual)}</span></td>
+      <td>
+        <div class="pct-wrap">
+          <div class="bar-bg"><div class="bar-fill" style="width:${barW}%;background:${barCol}"></div></div>
+          <span class="pct-num" style="color:${barCol}">${Math.round(pct)}%</span>
+        </div>
+      </td>
+      <td><span class="chip ${chipCls}">${(isOver?'+':'')}${fmtFull(diff)}</span></td>
+      <td><span class="chip ${chipCls}">${chipTxt}</span></td>
+    </tr>`;
+  });
+
+  tbody.innerHTML = rows;
+
+  const months2026 = allRows.filter(r=>r.year===2026).length;
+  document.getElementById('tbl-foot').innerHTML =
+    `<strong>2025:</strong> ${hit25}/12 tháng đạt mục tiêu &nbsp;·&nbsp; Tổng chênh lệch vs mục tiêu: ${diff25>=0?'+':''}${fmtFull(diff25)}`+
+    `&nbsp;&nbsp;|&nbsp;&nbsp;<strong>2026 (T1–T${months2026}):</strong> ${hit26}/${months2026} tháng đạt mục tiêu &nbsp;·&nbsp; Tổng chênh lệch: ${diff26>=0?'+':''}${fmtFull(diff26)}`;
+
+  document.getElementById('kpi-hit').textContent    = hit25;
+  document.getElementById('kpi-hit-sub').textContent = '/ 12 tháng đạt mục tiêu (2025)';
+  const htag = document.getElementById('kpi-hit-tag');
+  htag.textContent = hit25>=8?'Tốt':hit25>=5?'Trung bình':'Cần cải thiện';
+  htag.className   = 'kpi-tag '+(hit25>=8?'up':hit25>=5?'flat':'dn');
+}
+
+/* ── ANNUAL 4-YEAR BAR ─────────────────────────────────── */
 function renderAnnual(){
   kill('c-annual');
-  charts['c-annual'] = new Chart(document.getElementById('c-annual'),{
+  charts['c-annual']=new Chart(document.getElementById('c-annual'),{
     type:'bar',
     data:{
       labels:['2022','2023','2024','2025','2026\n(Jan–Apr)'],
       datasets:[{
         data:[2738634,2661567,2557132,2585098,840066],
-        backgroundColor:[CGRAY,CGRAY2,C24,C25,C26],
-        borderRadius:4, borderSkipped:false
+        backgroundColor:[CGRAY1,CGRAY2,CBROWN,C25,C26],
+        borderRadius:4,borderSkipped:false
       }]
     },
-    options:baseOpts({
-      scales:{
-        x:{grid:{display:false}},
-        y:{grid:{color:GRID},ticks:{callback:fmtKtick}}
-      },
+    options:{
+      responsive:true,maintainAspectRatio:false,
       plugins:{
         legend:{display:false},
-        tooltip:{callbacks:{label:ctx=>' '+fmtK(ctx.raw)}}
+        tooltip:{callbacks:{label:ctx=>' '+fmtFull(ctx.raw)}}
+      },
+      scales:{
+        x:{grid:{display:false}},
+        y:{grid:{color:GRID},ticks:{callback:v=>'$'+Math.round(v/1000)+'k'}}
       }
-    })
+    }
   });
 }
 
-// ── RENDER MONTHLY ───────────────────────────────────────────
+/* ── MONTHLY CHART ─────────────────────────────────────── */
 function renderMonthly(monthly){
   kill('c-monthly');
-  const months=['T1','T2','T3','T4','T5','T6','T7','T8','T9','T10','T11','T12'];
-  const get=(y,m)=>{const r=monthly.find(d=>d.Nam===y&&d.Thang===m);return r?r.revenue_usd:null};
-  const d25=months.map((_,i)=>get(2025,i+1));
-  const d26raw=months.map((_,i)=>get(2026,i+1));
-  const d26=d26raw.map(v=>v>0?v:null);
+  const get=(y,m)=>{const r=monthly.find(d=>d.Nam===y&&d.Thang===m);return r&&r.revenue_usd>0?r.revenue_usd:null};
+  const d25=LABELS12.map((_,i)=>get(2025,i+1));
+  const d26=LABELS12.map((_,i)=>get(2026,i+1));
 
   charts['c-monthly']=new Chart(document.getElementById('c-monthly'),{
     type:'bar',
     data:{
-      labels:months,
+      labels:LABELS12,
       datasets:[
-        {label:'2025',data:d25,backgroundColor:C25,borderRadius:3,borderSkipped:false},
-        {label:'2026',data:d26,backgroundColor:C26,borderRadius:3,borderSkipped:false}
+        {label:'2025',data:d25,backgroundColor:C25+'cc',borderRadius:3,borderSkipped:false,order:2},
+        {label:'2026',data:d26,backgroundColor:C26+'cc',borderRadius:3,borderSkipped:false,order:3},
+        {label:'Mục tiêu $200k',data:Array(12).fill(TARGET),type:'line',borderColor:CGRN,borderWidth:2,borderDash:[6,4],pointRadius:0,fill:false,order:1,tension:0}
       ]
     },
-    options:baseOpts({
-      scales:scaleOpts(fmtKtick),
+    options:{
+      responsive:true,maintainAspectRatio:false,
       plugins:{
-        legend:{display:true,position:'top',align:'end',
-          labels:{usePointStyle:true,pointStyle:'rect',font:{size:11},color:'#8a8278',padding:16}},
-        tooltip:{callbacks:{label:ctx=>` ${ctx.dataset.label}: ${fmtK(ctx.raw)}`}}
+        legend:{display:true,position:'top',align:'end',labels:{usePointStyle:true,boxWidth:10,boxHeight:10,padding:16,font:{size:11},color:'#3d3a35'}},
+        tooltip:{callbacks:{label:ctx=>{
+          if(ctx.dataset.label.includes('tiêu'))return' Mục tiêu: '+fmtFull(TARGET);
+          return` ${ctx.dataset.label}: ${fmtFull(ctx.raw)}`;
+        }}}
+      },
+      scales:{
+        x:{grid:{display:false},ticks:{autoSkip:false}},
+        y:{grid:{color:GRID},ticks:{callback:v=>'$'+Math.round(v/1000)+'k'}}
       }
-    })
+    }
   });
 }
 
-// ── RENDER JAN–APR COMPARISON ────────────────────────────────
-function renderJanApr(monthly){
-  kill('c-janapr');
-  const get=(y,m)=>{const r=monthly.find(d=>d.Nam===y&&d.Thang===m);return r?r.revenue_usd:0};
-  // 2024 monthly not available; estimate as annual/12 × 4
-  const avg2024 = 2557132/12;
-  const labels=['T1','T2','T3','T4'];
-  charts['c-janapr']=new Chart(document.getElementById('c-janapr'),{
+/* ── HBAR ──────────────────────────────────────────────── */
+function renderHBar(id,labels,vals,color){
+  kill(id);
+  charts[id]=new Chart(document.getElementById(id),{
+    type:'bar',
+    data:{labels,datasets:[{data:vals,backgroundColor:color,borderRadius:3,borderSkipped:false}]},
+    options:{
+      responsive:true,maintainAspectRatio:false,indexAxis:'y',
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` ${fmtFull(ctx.raw)}`}}},
+      scales:{
+        x:{grid:{color:GRID},ticks:{callback:v=>'$'+Math.round(v/1000)+'k'}},
+        y:{grid:{display:false},ticks:{font:{size:10}}}
+      }
+    }
+  });
+}
+
+/* ── CUSTOMER ──────────────────────────────────────────── */
+function renderCust(data){
+  kill('c-cust');
+  const yaz25=data.by_customer_2025.find(r=>/YAM/i.test(r.customer));
+  const chi25=data.by_customer_2025.find(r=>/CHINA|CONDOR/i.test(r.customer));
+  const yaz26=data.by_customer_2026.find(r=>/YAM/i.test(r.customer));
+  const chi26=data.by_customer_2026.find(r=>/CHINA|CONDOR/i.test(r.customer));
+  charts['c-cust']=new Chart(document.getElementById('c-cust'),{
     type:'bar',
     data:{
-      labels,
+      labels:['YAMAZAKI','CHINA CONDOR'],
       datasets:[
-        {label:'2024 (ước tính)',data:[avg2024,avg2024,avg2024,avg2024],backgroundColor:C24+'99',borderRadius:3,borderSkipped:false},
-        {label:'2025',data:labels.map((_,i)=>get(2025,i+1)),backgroundColor:C25,borderRadius:3,borderSkipped:false},
-        {label:'2026',data:labels.map((_,i)=>get(2026,i+1)),backgroundColor:C26,borderRadius:3,borderSkipped:false},
+        {label:'2025',data:[yaz25?yaz25.revenue:0,chi25?chi25.revenue:0],backgroundColor:C25,borderRadius:3,borderSkipped:false},
+        {label:'2026 (Jan–Apr)',data:[yaz26?yaz26.revenue:0,chi26?chi26.revenue:0],backgroundColor:C26,borderRadius:3,borderSkipped:false},
       ]
     },
-    options:baseOpts({
-      scales:scaleOpts(fmtKtick),
+    options:{
+      responsive:true,maintainAspectRatio:false,
       plugins:{
-        legend:{display:true,position:'top',align:'end',
-          labels:{usePointStyle:true,pointStyle:'rect',font:{size:11},color:'#8a8278',padding:12}},
-        tooltip:{callbacks:{label:ctx=>` ${ctx.dataset.label}: ${fmtK(ctx.raw)}`}}
+        legend:{display:true,position:'top',align:'end',labels:{usePointStyle:true,boxWidth:10,boxHeight:10,padding:14,font:{size:11},color:'#3d3a35'}},
+        tooltip:{callbacks:{label:ctx=>` ${ctx.dataset.label}: ${fmtFull(ctx.raw)}`}}
+      },
+      scales:{
+        x:{grid:{display:false}},
+        y:{grid:{color:GRID},ticks:{callback:v=>'$'+Math.round(v/1000)+'k'}}
       }
-    })
+    }
   });
 }
 
-// ── RENDER CUMULATIVE ────────────────────────────────────────
+/* ── DOUGHNUT ──────────────────────────────────────────── */
+function renderDoughnut(id,labels,vals){
+  kill(id);
+  charts[id]=new Chart(document.getElementById(id),{
+    type:'doughnut',
+    data:{labels,datasets:[{data:vals,backgroundColor:PIE,hoverOffset:4}]},
+    options:{
+      responsive:true,maintainAspectRatio:false,cutout:'58%',
+      plugins:{legend:{display:true,position:'bottom',labels:{font:{size:10},boxWidth:10,padding:8,color:'#3d3a35'}}}
+    }
+  });
+}
+
+/* ── CUMULATIVE ────────────────────────────────────────── */
 function renderCumul(monthly){
   kill('c-cumul');
   const m25=monthly.filter(r=>r.Nam===2025).sort((a,b)=>a.Thang-b.Thang);
@@ -511,133 +546,20 @@ function renderCumul(monthly){
     type:'line',
     data:{
       labels:m25.map(r=>'T'+r.Thang),
-      datasets:[{
-        data,borderColor:CGRN,backgroundColor:'rgba(45,125,70,.08)',
-        fill:true,tension:.35,pointRadius:3,pointHoverRadius:5,borderWidth:2
-      }]
+      datasets:[{data,borderColor:C25,backgroundColor:C25+'18',fill:true,tension:.35,pointRadius:3,pointHoverRadius:5,borderWidth:2}]
     },
-    options:baseOpts({
-      scales:scaleOpts(fmtKtick),
-      plugins:{tooltip:{callbacks:{label:ctx=>` Lũy kế: ${fmtK(ctx.raw)}`}}}
-    })
-  });
-}
-
-// ── RENDER HBAR ──────────────────────────────────────────────
-function renderHBar(id,labels,vals,color){
-  kill(id);
-  charts[id]=new Chart(document.getElementById(id),{
-    type:'bar',
-    data:{labels,datasets:[{data:vals,backgroundColor:color,borderRadius:3,borderSkipped:false}]},
-    options:{...baseOpts(),indexAxis:'y',
-      scales:{
-        x:{grid:{color:GRID},ticks:{callback:fmtKtick}},
-        y:{grid:{display:false},ticks:{font:{size:10}}}
-      }
-    }
-  });
-}
-
-// ── RENDER CUSTOMER COMPARISON ───────────────────────────────
-function renderCust(data){
-  kill('c-cust');
-  // Customers: YAMAZAKI and CHINA CONDOR across 2024, 2025, 2026
-  const yaz25=data.by_customer_2025.find(r=>r.customer.includes('YAMAZAKI')||r.customer.includes('YAM'));
-  const chi25=data.by_customer_2025.find(r=>r.customer.includes('CHINA')||r.customer.includes('CONDOR'));
-  const yaz26=data.by_customer_2026.find(r=>r.customer.includes('YAMAZAKI')||r.customer.includes('YAM'));
-  const chi26=data.by_customer_2026.find(r=>r.customer.includes('CHINA')||r.customer.includes('CONDOR'));
-
-  charts['c-cust']=new Chart(document.getElementById('c-cust'),{
-    type:'bar',
-    data:{
-      labels:['YAMAZAKI','CHINA CONDOR'],
-      datasets:[
-        {label:'2024',data:[2527598,29534],backgroundColor:C24+'cc',borderRadius:3,borderSkipped:false},
-        {label:'2025',data:[yaz25?yaz25.revenue:0,chi25?chi25.revenue:0],backgroundColor:C25,borderRadius:3,borderSkipped:false},
-        {label:'2026\n(Jan–Apr)',data:[yaz26?yaz26.revenue:0,chi26?chi26.revenue:0],backgroundColor:C26,borderRadius:3,borderSkipped:false},
-      ]
-    },
-    options:baseOpts({
-      scales:scaleOpts(fmtKtick),
-      plugins:{
-        legend:{display:true,position:'top',align:'end',
-          labels:{usePointStyle:true,pointStyle:'rect',font:{size:11},color:'#8a8278',padding:12}},
-        tooltip:{callbacks:{label:ctx=>` ${ctx.dataset.label}: ${fmtK(ctx.raw)}`}}
-      }
-    })
-  });
-}
-
-// ── RENDER DOUGHNUT ──────────────────────────────────────────
-function renderDoughnut(id,labels,vals){
-  kill(id);
-  charts[id]=new Chart(document.getElementById(id),{
-    type:'doughnut',
-    data:{labels,datasets:[{data:vals,backgroundColor:PIE,hoverOffset:4}]},
     options:{
-      responsive:true,maintainAspectRatio:false,cutout:'58%',
-      plugins:{
-        legend:{display:true,position:'bottom',
-          labels:{font:{size:10},boxWidth:10,padding:8,color:'#3d3a35'}}
+      responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>` Lũy kế: ${fmtFull(ctx.raw)}`}}},
+      scales:{
+        x:{grid:{display:false},ticks:{autoSkip:false}},
+        y:{grid:{color:GRID},ticks:{callback:v=>'$'+Math.round(v/1000)+'k'}}
       }
     }
   });
 }
 
-// ── RENDER TYPE MONTHLY ──────────────────────────────────────
-function renderTypeMon(monthly){
-  kill('c-typemon');
-  const m25=monthly.filter(r=>r.Nam===2025).sort((a,b)=>a.Thang-b.Thang);
-  charts['c-typemon']=new Chart(document.getElementById('c-typemon'),{
-    type:'bar',
-    data:{
-      labels:m25.map(r=>'T'+r.Thang),
-      datasets:[
-        {label:'製品/TP',data:m25.map(r=>Math.round(r.revenue_usd*.658)),backgroundColor:C25,borderRadius:2,borderSkipped:false},
-        {label:'商品/HH',data:m25.map(r=>Math.round(r.revenue_usd*.342)),backgroundColor:CPUR,borderRadius:2,borderSkipped:false},
-      ]
-    },
-    options:baseOpts({
-      scales:{
-        x:{stacked:true,grid:{display:false},ticks:{autoSkip:false}},
-        y:{stacked:true,grid:{color:GRID},ticks:{callback:fmtKtick}}
-      },
-      plugins:{
-        legend:{display:true,position:'top',align:'end',
-          labels:{usePointStyle:true,pointStyle:'rect',font:{size:11},color:'#8a8278',padding:12}},
-      }
-    })
-  });
-}
-
-// ── RENDER DINH BIEN ─────────────────────────────────────────
-function renderDinh(data){
-  kill('c-dinh');
-  const cats=data.by_category_2025.slice(0,8);
-  renderHBar('c-dinh',cats.map(r=>r.category),cats.map(r=>r.revenue),PIE.slice(0,cats.length));
-}
-
-// ── UPDATE KPI ───────────────────────────────────────────────
-function updateKPI(kpi){
-  document.getElementById('kpi25').textContent=fmtK(kpi.rev_2025_usd);
-  const pct25=((kpi.rev_2025_usd-2557132)/2557132*100).toFixed(1);
-  const t25=document.getElementById('kpi25-tag');
-  t25.textContent=(pct25>=0?'▲ ':'▼ ')+Math.abs(pct25)+'% vs 2024';
-  t25.className='kpi-tag '+(pct25>=0?'up':'dn');
-
-  document.getElementById('kpi26').textContent=fmtK(kpi.rev_2026_usd);
-  document.getElementById('kpi26-sub').textContent=`USD · đến Tháng ${kpi.last_month_2026}`;
-  const jan4_25=kpi.rev_2025_jan4_usd;
-  const pct26=(kpi.yoy_pct||0).toFixed(1);
-  const t26=document.getElementById('kpi26-tag');
-  t26.textContent=(pct26>=0?'▲ ':'▼ ')+Math.abs(pct26)+'% vs cùng kỳ 2025';
-  t26.className='kpi-tag '+(pct26>=0?'up':'dn');
-
-  document.getElementById('kpi-rec').textContent=kpi.total_records.toLocaleString();
-  document.getElementById('kpi-last').textContent='Dữ liệu đến T'+kpi.last_month_2026+'/2026';
-}
-
-// ── LOAD ─────────────────────────────────────────────────────
+/* ── LOAD DATA ─────────────────────────────────────────── */
 async function loadData(){
   const dot=document.getElementById('dot');
   try{
@@ -651,11 +573,9 @@ async function loadData(){
     document.getElementById('err').style.display='none';
 
     updateKPI(data.kpi);
-
+    buildTable(data.monthly);
     renderAnnual();
     renderMonthly(data.monthly);
-    renderJanApr(data.monthly);
-    renderCumul(data.monthly);
 
     const p25=data.top_products_2025.slice(0,10);
     renderHBar('c-p25',p25.map(r=>r.product),p25.map(r=>r.revenue),C25);
@@ -664,25 +584,22 @@ async function loadData(){
 
     renderCust(data);
 
-    const cat25=data.by_category_2025.slice(0,6);
+    const cat25=data.by_category_2025.slice(0,8);
     renderDoughnut('c-cat',cat25.map(r=>r.category),cat25.map(r=>r.revenue));
-    const type25=data.by_type_2025;
-    renderDoughnut('c-type',type25.map(r=>r.type),type25.map(r=>r.revenue));
-    renderTypeMon(data.monthly);
-    renderDinh(data);
+    renderCumul(data.monthly);
 
     document.getElementById('loading').classList.add('out');
   }catch(e){
     dot.className='';
     const er=document.getElementById('err');
     er.style.display='block';
-    er.textContent='⚠ Không tải được data.json — '+e.message+'. Kiểm tra Python script đang chạy và file ở cùng thư mục.';
+    er.textContent='⚠ Không tải được data.json — '+e.message+'. Kiểm tra file data.json ở cùng thư mục với dashboard.html.';
     document.getElementById('loading').classList.add('out');
   }
 }
 
 loadData();
-setInterval(loadData,REFRESH);
+setInterval(loadData,REFRESH_MS);
 </script>
 </body>
 </html>
