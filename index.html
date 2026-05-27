@@ -415,28 +415,37 @@ function buildTable(monthly){
   htag.className   = 'kpi-tag '+(hit25>=8?'up':hit25>=5?'flat':'dn');
 }
 
-/* ── ANNUAL 4-YEAR BAR ─────────────────────────────────── */
+/* ── ANNUAL 4-YEAR LINE CHART (UPDATED) ────────────────── */
 function renderAnnual(){
   kill('c-annual');
-  charts['c-annual']=new Chart(document.getElementById('c-annual'),{
-    type:'bar',
-    data:{
-      labels:['2022','2023','2024','2025','2026\n(Jan–Apr)'],
-      datasets:[{
-        data:[2738634,2661567,2557132,2585098,840066],
-        backgroundColor:[CGRAY1,CGRAY2,CBROWN,C25,C26],
-        borderRadius:4,borderSkipped:false
+  charts['c-annual'] = new Chart(document.getElementById('c-annual'), {
+    type: 'line', // Chuyển từ 'bar' sang 'line'
+    data: {
+      labels: ['2022', '2023', '2024', '2025', '2026\n(Jan–Apr)'],
+      datasets: [{
+        data: [2738634, 2661567, 2557132, 2585098, 840066],
+        borderColor: C25,           // Đường line chính màu xanh bảo đảm thẩm mỹ
+        backgroundColor: C25 + '15', // Đổ bóng nhẹ phía dưới đường line (độ mờ 8%)
+        fill: true,                  // Bật chế độ đổ bóng Area
+        tension: 0.2,                // Độ bo cong nhẹ của đường (0 là đường thẳng nét căng)
+        borderWidth: 3,              // Độ dày của đường line
+        pointRadius: 5,              // Kích thước chấm tròn tại các năm
+        pointBackgroundColor: [CGRAY1, CGRAY2, CBROWN, C25, C26], // Màu các chấm đồng bộ cũ
+        pointHoverRadius: 7
       }]
     },
-    options:{
-      responsive:true,maintainAspectRatio:false,
-      plugins:{
-        legend:{display:false},
-        tooltip:{callbacks:{label:ctx=>' '+fmtFull(ctx.raw)}}
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { callbacks: { label: ctx => ' ' + fmtFull(ctx.raw) } }
       },
-      scales:{
-        x:{grid:{display:false}},
-        y:{grid:{color:GRID},ticks:{callback:v=>'$'+Math.round(v/1000)+'k'}}
+      scales: {
+        x: { grid: { display: false } },
+        y: { 
+          grid: { color: GRID }, 
+          ticks: { callback: v => '$' + Math.round(v / 1000) + 'k' } 
+        }
       }
     }
   });
