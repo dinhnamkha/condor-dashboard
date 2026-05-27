@@ -579,7 +579,16 @@ async function loadData(){
     if(data.error)throw new Error(data.error);
 
     dot.className='live';
-    document.getElementById('ts').textContent='Cập nhật: '+data.updated_at;
+    // Ép kiểu chuỗi thời gian từ data.json sang định dạng giờ Việt Nam (GMT+7)
+    const updateTime = new Date(data.updated_at);
+    const gioVietNam = updateTime.toLocaleTimeString('vi-VN', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
+    
+    // Hiển thị dạng: "Cập nhật: 08:00:15"
+    document.getElementById('ts').textContent = 'Cập nhật: ' + gioVietNam;
     document.getElementById('err').style.display='none';
 
     updateKPI(data.kpi);
