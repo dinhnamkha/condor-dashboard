@@ -415,22 +415,22 @@ function buildTable(monthly){
   htag.className   = 'kpi-tag '+(hit25>=8?'up':hit25>=5?'flat':'dn');
 }
 
-/* ── ANNUAL 4-YEAR LINE CHART (UPDATED) ────────────────── */
+/* ── ANNUAL 4-YEAR LINE CHART (UPDATED BEGIN AT ZERO) ──── */
 function renderAnnual(){
   kill('c-annual');
   charts['c-annual'] = new Chart(document.getElementById('c-annual'), {
-    type: 'line', // Chuyển từ 'bar' sang 'line'
+    type: 'line',
     data: {
       labels: ['2022', '2023', '2024', '2025', '2026\n(Jan–Apr)'],
       datasets: [{
         data: [2738634, 2661567, 2557132, 2585098, 840066],
-        borderColor: C25,           // Đường line chính màu xanh bảo đảm thẩm mỹ
-        backgroundColor: C25 + '15', // Đổ bóng nhẹ phía dưới đường line (độ mờ 8%)
-        fill: true,                  // Bật chế độ đổ bóng Area
-        tension: 0.2,                // Độ bo cong nhẹ của đường (0 là đường thẳng nét căng)
-        borderWidth: 3,              // Độ dày của đường line
-        pointRadius: 5,              // Kích thước chấm tròn tại các năm
-        pointBackgroundColor: [CGRAY1, CGRAY2, CBROWN, C25, C26], // Màu các chấm đồng bộ cũ
+        borderColor: C25,
+        backgroundColor: C25 + '15',
+        fill: true,
+        tension: 0.2,
+        borderWidth: 3,
+        pointRadius: 5,
+        pointBackgroundColor: [CGRAY1, CGRAY2, CBROWN, C25, C26],
         pointHoverRadius: 7
       }]
     },
@@ -443,6 +443,7 @@ function renderAnnual(){
       scales: {
         x: { grid: { display: false } },
         y: { 
+          beginAtZero: true, // Ép trục Y phải bắt đầu từ số 0
           grid: { color: GRID }, 
           ticks: { callback: v => '$' + Math.round(v / 1000) + 'k' } 
         }
